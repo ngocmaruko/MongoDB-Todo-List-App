@@ -22,7 +22,7 @@ function App() {
 
   // Delete a task
   const deleteTask = async (id) => {
-    await axios.delete(`http://https://mongodb-todo-list-app.onrender.com/api/tasks/${id}`);
+    await axios.delete(`https://mongodb-todo-list-app.onrender.com/api/tasks/${id}`);
     setTasks(tasks.filter(task => task._id !== id));
   };
 
