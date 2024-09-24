@@ -6,28 +6,23 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [taskDescription, setTaskDescription] = useState('');
 
-  // Determine the base URL for the API based on the environment
-  const apiUrl = process.env.NODE_ENV === 'production'
-    ? 'https://mongodb-todo-list-app.onrender.com/api/tasks'
-    : 'http://localhost:5000/api/tasks';
-
   // Fetch tasks from the API
   const fetchTasks = async () => {
-    const response = await axios.get(apiUrl);
+    const response = await axios.get('https://mongodb-todo-list-app.onrender.com/api/tasks');
     setTasks(response.data);
   };
 
   // Add a new task
   const addTask = async () => {
     if (!taskDescription) return;
-    const response = await axios.post(apiUrl, { description: taskDescription });
+    const response = await axios.post('https://mongodb-todo-list-app.onrender.com/api/tasks', { description: taskDescription });
     setTasks([...tasks, response.data]);
     setTaskDescription('');
   };
 
   // Delete a task
   const deleteTask = async (id) => {
-    await axios.delete(`${apiUrl}/${id}`);
+    await axios.delete(`http://https://mongodb-todo-list-app.onrender.com/api/tasks/${id}`);
     setTasks(tasks.filter(task => task._id !== id));
   };
 
