@@ -3,8 +3,14 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [taskDescription, setTaskDescription] = useState("");
+  const [tasks, setTasks] = useState([
+    {
+      _id: "default-task-id",  // Placeholder for the default task ID
+      description: "Refine portfolio website",
+      date: "2025-01-01",
+      completed: false,
+    },
+  ]);  const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [editingTask, setEditingTask] = useState(null);
   const [showModal, setShowModal] = useState(false);
