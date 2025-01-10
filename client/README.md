@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# To-Do List App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a full-stack To-Do List application built with React on the frontend and Node.js with Express on the backend. The app uses MongoDB as the database to store tasks and provides CRUD operations (Create, Read, Update, Delete).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Add Tasks**: Create new tasks with a description and due date.
+- **Edit Tasks**: Modify the description or due date of an existing task.
+- **Delete Tasks**: Remove tasks from the list.
+- **View Tasks**: Display all tasks with their descriptions and due dates.
+- **Modal Interface**: Provides a user-friendly modal for editing tasks.
 
-### `npm start`
+## Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend:
+- React
+- Axios for HTTP requests
+- CSS for styling
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend:
+- Node.js
+- Express.js
+- MongoDB with Mongoose
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- Node.js and npm
+- MongoDB Atlas account (or local MongoDB instance)
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/todo-list-app.git
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Navigate to the project directory:
+   ```bash
+   cd todo-list-app
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install dependencies for the backend:
+   ```bash
+   cd server
+   npm install
+   ```
 
-### `npm run eject`
+4. Set up environment variables in a `.env` file:
+   ```
+   DB_PASSWORD=your-mongodb-password
+   PORT=5000
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. Start the backend server:
+   ```bash
+   node server.js
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6. Install dependencies for the frontend:
+   ```bash
+   cd ../client
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+7. Start the frontend application:
+   ```bash
+   npm start
+   ```
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The backend server can be deployed to platforms like Render, and the frontend can be deployed to platforms like Netlify or Vercel.
 
-### `npm run build` fails to minify
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `GET /api/tasks`: Fetch all tasks.
+- `POST /api/tasks`: Add a new task.
+- `PUT /api/tasks/:id`: Update a task by ID.
+- `DELETE /api/tasks/:id`: Delete a task by ID.
+
+## Future Enhancements
+
+- **Task Prioritization**: Add a priority level for each task.
+- **User Authentication**: Enable multiple users with their own task lists.
+- **Search and Filter**: Provide search and filter functionality for tasks.
+- **Responsive Design**: Improve mobile responsiveness.
+
+---
+

@@ -5,36 +5,37 @@ import "./App.css";
 function App() {
   const [tasks, setTasks] = useState([
     {
-      _id: "default-task-id",  // Placeholder for the default task ID
+      _id: "default-task-id",
       description: "Refine portfolio website",
       date: "2025-01-01",
       completed: false,
     },
-  ]);  const [taskDescription, setTaskDescription] = useState("");
+  ]);
+  const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [editingTask, setEditingTask] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   // Fetch tasks from the API
   const fetchTasks = async () => {
-    const response = await axios.get(
+    const { data } = await axios.get(
       "https://mongodb-todo-list-app.onrender.com/api/tasks"
     );
-    setTasks(response.data);
+    setTasks(data);  // Directly set the fetched data
   };
 
   // Add a new task
   const addTask = async () => {
     if (!taskDescription || !taskDate) return;
-    const response = await axios.post(
+    const { data } = await axios.post(
       "https://mongodb-todo-list-app.onrender.com/api/tasks",
       {
         description: taskDescription,
         date: taskDate,
-        completed: false, // Add the completed property
+        completed: false,
       }
     );
-    setTasks([...tasks, response.data]);
+    setTasks([...tasks, data]); // Use the response data
     setTaskDescription("");
     setTaskDate("");
   };
@@ -44,10 +45,10 @@ function App() {
     const taskToUpdate = tasks.find((task) => task._id === id);
     const updatedTask = {
       ...taskToUpdate,
-      completed: !taskToUpdate.completed, // Toggle completed
+      completed: !taskToUpdate.completed,
     };
 
-    const response = await axios.put(
+    await axios.put(
       `https://mongodb-todo-list-app.onrender.com/api/tasks/${id}`,
       updatedTask
     );
@@ -64,13 +65,13 @@ function App() {
     setTaskDescription(task.description);
     setTaskDate(task.date);
     setEditingTask(task);
-    setShowModal(true); // Show the modal when editing
+    setShowModal(true); 
   };
 
   // Update an existing task
   const updateTask = async () => {
     if (!taskDescription || !taskDate || !editingTask) return;
-    const response = await axios.put(
+    const { data } = await axios.put(
       `https://mongodb-todo-list-app.onrender.com/api/tasks/${editingTask._id}`,
       {
         description: taskDescription,
@@ -78,12 +79,12 @@ function App() {
       }
     );
     setTasks(
-      tasks.map((task) => (task._id === editingTask._id ? response.data : task))
+      tasks.map((task) => (task._id === editingTask._id ? data : task))
     );
     setTaskDescription("");
     setTaskDate("");
     setEditingTask(null);
-    setShowModal(false); // Close the modal after saving
+    setShowModal(false); 
   };
 
   // Delete a task
@@ -94,7 +95,6 @@ function App() {
     setTasks(tasks.filter((task) => task._id !== id));
   };
 
-  // UseEffect to fetch tasks when component mounts
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -147,7 +147,6 @@ function App() {
         ))}
       </ul>
 
-      {/* Modal for editing */}
       {showModal && (
         <div
           className="modal-overlay"
