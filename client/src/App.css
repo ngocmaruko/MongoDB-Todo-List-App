@@ -1,22 +1,27 @@
-/* App.css */
-
-/* General styles */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Container */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
 .container {
-  max-width: 600px;
-  margin: 50px auto;
+  max-width: 90%;
+  width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px #0000001a;
+  background-color: #f9f9f9;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  margin-top: 6%;
 }
 
 h1 {
@@ -30,8 +35,10 @@ h1 {
 /* Input Group */
 .input-group {
   display: flex;
-  gap: 20px;
-  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .input-group .form-control {
@@ -40,14 +47,19 @@ h1 {
   padding: 10px;
 }
 
-.input-group input[type="text"] {
-  border: 2px solid #dde2e6;
-  background-color: #f9f9f9;
+.input-group input[type="text"],
+.input-group input[type="date"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  min-width: 150px;
 }
 
 .input-group input[type="date"] {
-  border: 2px solid #dde2e6;
-  background-color: #f9f9f9;
+  min-width: 100px;
 }
 
 /* Button styles */
@@ -60,6 +72,7 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
+  padding: 10px 20px;
 }
 
 .input-group button:hover {
@@ -67,9 +80,11 @@ h1 {
 }
 
 /* List Group */
+.list-group {
+  margin: 10% 0;
+}
 .list-group-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border: 1px solid #dde2e6;
   background-color: #ffffff;
@@ -77,18 +92,22 @@ h1 {
   margin-bottom: 10px;
   padding: 15px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .list-group-item:hover {
   background-color: #f0f8ff;
 }
 
-.list-group-item div {
-  flex: 1;
+.list-group-item-task {
+  flex-grow: 1;
 }
-
+.list-group-item-modify{
+  display: flex;
+  gap: 10px;
+}
 .list-group-item strong {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: #333;
 }
 
@@ -96,37 +115,50 @@ h1 {
   color: #8c8c8c;
 }
 
-.list-group-item .btn {
-  margin-left: 10px;
+.btn {
   border-radius: 8px;
   transition: background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  padding: 10px 16px;
 }
 
-.list-group-item .btn-info {
+.btn-info {
   background: linear-gradient(90deg, #36d1dc, #4e73df);
   color: #fff;
   border: none;
-  padding: 8px 16px;
+
 }
 
-.list-group-item .btn-info:hover {
+.btn-info:hover {
   background: linear-gradient(90deg, #4e73df, #36d1dc);
-
 }
 
-.list-group-item .btn-danger {
+.btn-danger {
   background: linear-gradient(90deg, #e74a3b, #f08d48);
   color: #fff;
   border: none;
-  padding: 8px 16px;
 }
 
-.list-group-item .btn-danger:hover {
+.btn-danger:hover {
   background: linear-gradient(90deg, #f08d48, #e74a3b);
+}
+/* CSS rule to cross out the completed tasks */
+.list-group-item.completed .list-group-item-task {
+  text-decoration: line-through;
+  color: red;
+  cursor: pointer;
+}
+
+.list-group-item.completed {
+  background-color: #f8f9fa;
+}
+
+.list-group-item.completed:hover {
+  background-color: #f8f9fa;
 }
 
 /* Media queries for responsiveness */
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .input-group {
     flex-direction: column;
   }
@@ -141,6 +173,14 @@ h1 {
 
   .list-group-item {
     padding: 12px;
+  }
+  .list-group-item-modify {
+    display: flex;
+  }
+  .input-group input[type="text"],
+  .input-group input[type="date"] {
+    width: 100%;
+    margin-right: 0;
   }
 }
 /* Modal Overlay */
@@ -157,19 +197,99 @@ h1 {
   z-index: 1000;
 }
 
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Darker background for better focus */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
 /* Modal Content */
 .modal-content {
   background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%; /* Adjust for responsiveness */
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Softer shadow for depth */
+  animation: fadeIn 0.3s ease; /* Add a smooth fade-in effect */
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #4e73df;
+  text-align: center;
+  font-weight: bold;
 }
 
 .modal-content .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between input fields */
   margin-bottom: 20px;
 }
 
-.modal-content button {
+.modal-content .form-control {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.modal-content .form-control:focus {
+  border-color: #4e73df;
+  outline: none;
+}
+
+.modal-content .btn {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content .btn-info {
+  background: linear-gradient(90deg, #36d1dc, #4e73df);
+  color: #fff;
+  border: none;
+}
+
+.modal-content .btn-info:hover {
+  background: linear-gradient(90deg, #4e73df, #36d1dc);
+}
+
+.modal-content .btn-danger {
+  background: linear-gradient(90deg, #e74a3b, #f08d48);
+  color: #fff;
+  border: none;
   margin-top: 10px;
+}
+
+.modal-content .btn-danger:hover {
+  background: linear-gradient(90deg, #f08d48, #e74a3b);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
