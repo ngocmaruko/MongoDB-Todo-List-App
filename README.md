@@ -32,7 +32,7 @@ This is a full-stack To-Do List application built with React on the frontend and
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/todo-list-app.git](https://github.com/ngocmaruko/MongoDB-Todo-List-App.git)
+   git clone https://github.com/ngocmaruko/MongoDB-Todo-List-App.git
    ```
 
 2. Navigate to the project directory:
